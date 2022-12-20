@@ -2,7 +2,7 @@ grammar PL0;
 @parser::header { package PL0Modules; }
 @lexer::header { package PL0Modules; }
 
-//TODO: Add decimal types
+//TODO: Add booleans in the future
 
 program : MODULE MAIN SEMICOLON block MAIN DOT;
 
