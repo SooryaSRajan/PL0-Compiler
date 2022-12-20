@@ -12,8 +12,8 @@ module main;
     #The below code shows implementation of fibonacci series
 
     procedure fib(arg:int);
-	var temp:int;
     begin
+	var temp:int;
 	if arg <= 0 then result := 0; end;
 	if arg  = 1 then result := -1; end;
 	if arg  > 1 then

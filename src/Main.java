@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        CharStream codePointCharStream = CharStreams.fromFileName("src/InputFiles/stack");
+        CharStream codePointCharStream = CharStreams.fromFileName("src/InputFiles/sum");
 
 //        CharStream input = new ANTLRFileStream("/InputFiles/stack");
 
