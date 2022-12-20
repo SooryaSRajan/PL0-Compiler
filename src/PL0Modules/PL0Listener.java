@@ -1,4 +1,5 @@
 // Generated from java-escape by ANTLR 4.11.1
+ package PL0Modules; 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -66,6 +67,26 @@ public interface PL0Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDecl(PL0Parser.DeclContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PL0Parser#dataTypes}.
+	 * @param ctx the parse tree
+	 */
+	void enterDataTypes(PL0Parser.DataTypesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#dataTypes}.
+	 * @param ctx the parse tree
+	 */
+	void exitDataTypes(PL0Parser.DataTypesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PL0Parser#dataTypesTerminals}.
+	 * @param ctx the parse tree
+	 */
+	void enterDataTypesTerminals(PL0Parser.DataTypesTerminalsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#dataTypesTerminals}.
+	 * @param ctx the parse tree
+	 */
+	void exitDataTypesTerminals(PL0Parser.DataTypesTerminalsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PL0Parser#constDecl}.
 	 * @param ctx the parse tree
@@ -267,25 +288,15 @@ public interface PL0Listener extends ParseTreeListener {
 	 */
 	void exitParameters(PL0Parser.ParametersContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PL0Parser#paremeterExpression}.
+	 * Enter a parse tree produced by {@link PL0Parser#parametersInnerRepeat}.
 	 * @param ctx the parse tree
 	 */
-	void enterParemeterExpression(PL0Parser.ParemeterExpressionContext ctx);
+	void enterParametersInnerRepeat(PL0Parser.ParametersInnerRepeatContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PL0Parser#paremeterExpression}.
+	 * Exit a parse tree produced by {@link PL0Parser#parametersInnerRepeat}.
 	 * @param ctx the parse tree
 	 */
-	void exitParemeterExpression(PL0Parser.ParemeterExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link PL0Parser#parameterExtension}.
-	 * @param ctx the parse tree
-	 */
-	void enterParameterExtension(PL0Parser.ParameterExtensionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PL0Parser#parameterExtension}.
-	 * @param ctx the parse tree
-	 */
-	void exitParameterExtension(PL0Parser.ParameterExtensionContext ctx);
+	void exitParametersInnerRepeat(PL0Parser.ParametersInnerRepeatContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PL0Parser#assignStmt}.
 	 * @param ctx the parse tree

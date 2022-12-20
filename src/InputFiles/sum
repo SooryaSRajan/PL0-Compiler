@@ -1,0 +1,18 @@
+module main;
+
+    #The below code shows implementation for computing two numbers
+
+begin
+
+    var valueOne:int;
+    valueOne := input;
+
+    var valueTwo:int;
+    valueTwo := input;
+
+    var result:int;
+    result := valueOne + valueTwo;
+
+    output := result;
+
+end main.

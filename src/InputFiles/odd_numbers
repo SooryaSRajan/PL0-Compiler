@@ -1,0 +1,34 @@
+module main;
+
+    #The below code gets sum of all odd numbers
+    var arr:array [10] of int;
+
+begin
+
+    output := "Enter an array of size 10: ";
+    var position: int;
+    position := 0;
+
+    for 0 to 10
+        do
+            arr [position] := input;
+            position := position + 1;
+    end;
+
+    var sum: int;
+    sum := 0;
+
+    position := 0;
+
+    for 0 to 10
+        do
+            if odd arr [position] then
+                sum := sum + arr [position];
+            end;
+            position := position + 1;
+    end;
+
+    output := "Sum of all odd numbers: ";
+    output := sum;
+
+end main.

@@ -1,0 +1,72 @@
+module main;
+
+    var stack:array [100] of int;
+    var position:int;
+    const count:int;
+
+    procedure push(value:int);
+    begin
+
+        if position >= 0 and position <= 100 then
+            position := position + 1;
+            stack[position] := value;
+            [else
+                output := "Stack pointer not in range";
+            ]
+        end;
+    end push;
+
+    procedure pop():int;
+    begin
+        if position >= 0 then
+            position := position - 1;
+            return stack[position + 1];
+            [else
+                output := "Stack Underflow";
+            ]
+        end;
+    end pop;
+
+    procedure top():int;
+    begin
+        if position >= 0 then
+            return stack[position];
+            [else
+                output := "Stack Underflow";
+            ]
+        end;
+    end top;
+
+begin
+
+    #0 - push, 1 - pop, 2 - top, 3 - exit
+
+    position := -1;
+    var n:float;
+    n := input;
+    var value:int;
+
+    while n <> 3 and 1 = 2 or odd 12 do
+	    if n = 0 then
+	        value := input;
+	        push(value);
+	        [else
+                if n = 1 then
+                    output := pop();
+                    [else
+                        if n = 2 then
+                            output := top();
+                            [else
+                                output := "Invalid Value Entered";
+                            ]
+                        end;
+                    ]
+                end;
+
+	        ]
+	    end;
+	    n := input;
+    end;
+
+
+end main.

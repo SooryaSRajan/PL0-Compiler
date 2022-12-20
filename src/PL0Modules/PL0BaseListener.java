@@ -1,4 +1,5 @@
 // Generated from java-escape by ANTLR 4.11.1
+ package PL0Modules; 
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -83,6 +84,30 @@ public class PL0BaseListener implements PL0Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDecl(PL0Parser.DeclContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDataTypes(PL0Parser.DataTypesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDataTypes(PL0Parser.DataTypesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDataTypesTerminals(PL0Parser.DataTypesTerminalsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDataTypesTerminals(PL0Parser.DataTypesTerminalsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -328,25 +353,13 @@ public class PL0BaseListener implements PL0Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParemeterExpression(PL0Parser.ParemeterExpressionContext ctx) { }
+	@Override public void enterParametersInnerRepeat(PL0Parser.ParametersInnerRepeatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParemeterExpression(PL0Parser.ParemeterExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterParameterExtension(PL0Parser.ParameterExtensionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParameterExtension(PL0Parser.ParameterExtensionContext ctx) { }
+	@Override public void exitParametersInnerRepeat(PL0Parser.ParametersInnerRepeatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

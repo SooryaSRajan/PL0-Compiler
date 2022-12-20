@@ -1,0 +1,21 @@
+module main;
+
+    #The below code will get input of n numbers and print product
+
+begin
+
+    var n:int;
+    n := input;
+
+    var product:int;
+    product := 1;
+
+    for 0 to n
+        do
+            product := product * input;
+        end;
+
+    output := "Input of all numbers are: ";
+    output := product;
+
+end main.

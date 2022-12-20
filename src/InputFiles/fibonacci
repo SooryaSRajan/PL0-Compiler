@@ -1,0 +1,38 @@
+module main;
+
+    #THIS IS A SINGLE LINE COMMENT WITH RANDOM CHARACTERS 1283t128o7t3eo7i!(@*&^B#ET!@o
+    
+    ##This is a multi line comment
+      Line One
+      Line Two
+      Line Three
+      Close
+    ##
+    
+    #The below code shows implementation of fibonacci series
+
+    procedure fib(arg:int);
+	var temp:int;
+    begin
+	if arg <= 0 then result := 0; end;
+	if arg  = 1 then result := -1; end;
+	if arg  > 1 then
+		fib(arg - 1);
+		temp := result;
+		fib(arg - 2);
+		result := result + temp;
+	end;
+    end fib;
+
+    var n:int;
+
+begin
+
+    n := input;
+    while n <> 0 do
+        fib(n);
+        output := result;
+        n := input;
+    end;
+
+end main.

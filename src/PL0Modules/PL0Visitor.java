@@ -1,4 +1,5 @@
 // Generated from java-escape by ANTLR 4.11.1
+ package PL0Modules; 
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -45,6 +46,18 @@ public interface PL0Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDecl(PL0Parser.DeclContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PL0Parser#dataTypes}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDataTypes(PL0Parser.DataTypesContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PL0Parser#dataTypesTerminals}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDataTypesTerminals(PL0Parser.DataTypesTerminalsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PL0Parser#constDecl}.
 	 * @param ctx the parse tree
@@ -166,17 +179,11 @@ public interface PL0Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParameters(PL0Parser.ParametersContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PL0Parser#paremeterExpression}.
+	 * Visit a parse tree produced by {@link PL0Parser#parametersInnerRepeat}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitParemeterExpression(PL0Parser.ParemeterExpressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PL0Parser#parameterExtension}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParameterExtension(PL0Parser.ParameterExtensionContext ctx);
+	T visitParametersInnerRepeat(PL0Parser.ParametersInnerRepeatContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PL0Parser#assignStmt}.
 	 * @param ctx the parse tree

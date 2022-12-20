@@ -1,13 +1,8 @@
 grammar PL0;
+@parser::header { package PL0Modules; }
+@lexer::header { package PL0Modules; }
 
-//TODO: separate procDecl from decl, functions can only be defined in top
-//TODO: remove declList from procDecl, don't need it
-//TODO: Single line declaration, multi line could be troublesome
-//TODO: Make sure assignment is done, no empty variables
-//TODO: Reduce nested scopes
-//TODO: Make sure all variables are declared before use
-
-//TODO: Arrays
+//TODO: Add decimal types
 
 program : MODULE MAIN SEMICOLON block MAIN DOT;
 
@@ -26,24 +21,25 @@ globalDecl : decl | procDecl;
 decl : constDecl
     | varDecl;
 
+dataTypes: INT | FLOAT;
+dataTypesTerminals: INTEGER | DECIMAL;
+
 //const declaration, can only be int
-constDecl : CONST INT constDeclItemInner;
-constDeclItemInner : COMMA INT constDeclItemInner | ;
+constDecl : CONST dataTypes constDeclItemInner;
+constDeclItemInner : COMMA dataTypes constDeclItemInner | ;
 
 //variable declaraion, can be int and array
 varDecl : VAR variableDeclDefinition varDeclItemInner;
 varDeclItemInner: COMMA variableDeclDefinition varDeclItemInner | ;
 
 //actual assignment de
-variableDeclDefinition : ID COLON INT EQUAL constExpr | ID COLON arrType;
+variableDeclDefinition : ID COLON dataTypes EQUAL constExpr | ID COLON type;
 
 //value rhs of assignment
 constExpr : ID
-    | INTEGER;
+    dataTypesTerminals;
 
 //procedure declaration
-//TODO: Define procedure block
-
 procDecl : PROCEDURE ID BRACKET_OPEN procFormalCallChoice BRACKET_CLOSE returnType SEMICOLON statementBlock ID;
 
 //returnTYpe
@@ -54,7 +50,7 @@ procFormalCallChoice : formalDecl formalDeclInnerRepeat | ;
 formalDeclInnerRepeat: COMMA formalDecl formalDeclInnerRepeat | ;
 formalDecl : ID COLON type;
 
-type : INT
+type : dataTypes
     | arrType;
 arrType: ARRAY SQ_OPEN INTEGER SQ_CLOSE OF type;
 
@@ -79,9 +75,12 @@ stmt : callStmt
 callStmt : ID BRACKET_OPEN parameters BRACKET_CLOSE;
 
 //parameters
-parameters : paremeterExpression | ;
-paremeterExpression : expr parameterExtension;
-parameterExtension: COMMA expr parameters | ;
+parameters: expr parametersInnerRepeat | ;
+parametersInnerRepeat: COMMA expr parametersInnerRepeat | ;
+
+//parameters : paremeterExpression | ;
+//paremeterExpression : expr parameterExtension;
+//parameterExtension: COMMA expr parameters | ;
 
 //assignment statements
 assignStmt : lvalue ASSIGNMENT expr;
@@ -127,7 +126,7 @@ term : factor termMultDivFactor;
 termMultDivFactor: MULTIPLICATION factor termMultDivFactor | DIVISION factor termMultDivFactor | ;
 factor : MINUS factor
     | lvalue
-    | INTEGER
+    | dataTypesTerminals
     | INPUT
     | callStmt
     | BRACKET_OPEN expr BRACKET_CLOSE;
@@ -144,6 +143,7 @@ END: 'end';
 CONST: 'const';
 VAR: 'var';
 INT: 'int';
+FLOAT: 'float';
 IF: 'if';
 THEN: 'then';
 ELSE: 'else';
@@ -172,6 +172,7 @@ OF: 'of';
 //Variables and values
 ID: ([a-zA-Z_][a-zA-Z0-9_]*);
 INTEGER: [0]|[1-9]+[0-9]*;
+DECIMAL: [0]|[1-9]+[0-9]*'.'[0-9]+;
 
 //operators
 PLUS: '+';

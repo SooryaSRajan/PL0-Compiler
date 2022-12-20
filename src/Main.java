@@ -1,43 +1,33 @@
-import org.antlr.v4.runtime.ANTLRFileStream;
+import PL0Modules.PL0Lexer;
+import PL0Modules.PL0Parser;
 import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import gen.*
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
 
-//        try {
+        CharStream codePointCharStream = CharStreams.fromFileName("src/InputFiles/stack");
 
-            //gets the file as a character stream
-            //uncomment the file path as needed
+//        CharStream input = new ANTLRFileStream("/InputFiles/stack");
 
-            CharStream input = new ANTLRFileStream("/Users/sooryasrajan/AntlrCompilerDesign/src/InputFiles/stack");
-//            CharStream input = new ANTLRFileStream("/Users/sooryasrajan/AntlrCompilerDesign/src/InputFiles/multiplication");
-//            CharStream input = new ANTLRFileStream("/Users/sooryasrajan/AntlrCompilerDesign/src/InputFiles/odd_numbers");
-//            CharStream input = new ANTLRFileStream("/Users/sooryasrajan/AntlrCompilerDesign/src/InputFiles/fibonacci");
-//            CharStream input = new ANTLRFileStream("/Users/sooryasrajan/AntlrCompilerDesign/src/InputFiles/stack");
+        //generates a lexer output for the input code
+        PL0Lexer lexer = new PL0Lexer(codePointCharStream);
 
-            //generates a lexer output for the input code
-             lexer = new LexarLexer(input);
+        //Gets tokens for the input file
+        CommonTokenStream token = new CommonTokenStream(lexer);
 
-            //Gets tokens for the input file
-            CommonTokenStream token = new CommonTokenStream(lexer);
-
-//            RDPParserPL0 parserPL0 = new RDPParserPL0(lexer);
-//            parserPL0.start();
-
-            //The token stream is parsed with the respective grammars to check for errors
-            LexarParser parser = new LexarParser(token);
-            parser.start();
+        //The token stream is parsed with the respective grammars to check for errors
+        PL0Parser parser = new PL0Parser(token);
+        parser.program();
 
 //           walk tree
-//            ParseTreeWalker walker = new ParseTreeWalker();
-//            walker.walk(new PL0Listener(), parser.start());
+        ParseTreeWalker walker = new ParseTreeWalker();
+//      walker.walk(new PL0Listener(), parser.start());
 
-//        } catch (Exception e) {
-            //In case of parse exceptions, an error is thrown and handled here
-//            System.out.println(e.getLocalizedMessage());
-//        }
+
     }
 }
