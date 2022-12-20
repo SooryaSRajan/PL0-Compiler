@@ -2,11 +2,9 @@ module main;
 
     var stack:array [100] of int;
     var position:int;
-    const count:int := 100.2;
 
     procedure push(value:int);
     begin
-
         if position >= 0 and position <= 100 then
             position := position + 1;
             stack[position] := value;
@@ -42,11 +40,11 @@ begin
     #0 - push, 1 - pop, 2 - top, 3 - exit
 
     position := -1;
-    var n:float;
+    var n:int;
     n := input;
     var value:int;
 
-    while n <> 3 and 1 = 2 or odd 12 do
+    while n <> 3 do
 	    if n = 0 then
 	        value := input;
 	        push(value);
