@@ -128,6 +128,16 @@ public interface PL0Listener extends ParseTreeListener {
 	 */
 	void exitVarDeclItemInner(PL0Parser.VarDeclItemInnerContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PL0Parser#constVariableDeclDefinition}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstVariableDeclDefinition(PL0Parser.ConstVariableDeclDefinitionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#constVariableDeclDefinition}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstVariableDeclDefinition(PL0Parser.ConstVariableDeclDefinitionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PL0Parser#variableDeclDefinition}.
 	 * @param ctx the parse tree
 	 */

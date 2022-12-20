@@ -2,7 +2,7 @@ module main;
 
     var stack:array [100] of int;
     var position:int;
-    const count:int;
+    const count:int := 100.2;
 
     procedure push(value:int);
     begin

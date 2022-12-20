@@ -25,18 +25,19 @@ dataTypes: INT | FLOAT;
 dataTypesTerminals: INTEGER | DECIMAL;
 
 //const declaration, can only be int
-constDecl : CONST dataTypes constDeclItemInner;
-constDeclItemInner : COMMA dataTypes constDeclItemInner | ;
+constDecl : CONST constVariableDeclDefinition constDeclItemInner;
+constDeclItemInner : COMMA constVariableDeclDefinition constDeclItemInner | ;
 
 //variable declaraion, can be int and array
 varDecl : VAR variableDeclDefinition varDeclItemInner;
 varDeclItemInner: COMMA variableDeclDefinition varDeclItemInner | ;
 
 //actual assignment de
-variableDeclDefinition : ID COLON dataTypes EQUAL constExpr | ID COLON type;
+constVariableDeclDefinition: ID COLON dataTypes ASSIGNMENT constExpr;
+variableDeclDefinition : constVariableDeclDefinition | ID COLON type;
 
 //value rhs of assignment
-constExpr : ID
+constExpr : ID |
     dataTypesTerminals;
 
 //procedure declaration

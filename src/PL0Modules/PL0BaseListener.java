@@ -161,6 +161,18 @@ public class PL0BaseListener implements PL0Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterConstVariableDeclDefinition(PL0Parser.ConstVariableDeclDefinitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConstVariableDeclDefinition(PL0Parser.ConstVariableDeclDefinitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVariableDeclDefinition(PL0Parser.VariableDeclDefinitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
