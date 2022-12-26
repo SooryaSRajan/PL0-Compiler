@@ -89,6 +89,12 @@ public interface PL0Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConstVariableDeclDefinition(PL0Parser.ConstVariableDeclDefinitionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PL0Parser#variableVariableDeclDefinition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableVariableDeclDefinition(PL0Parser.VariableVariableDeclDefinitionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PL0Parser#variableDeclDefinition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

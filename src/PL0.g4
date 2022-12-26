@@ -3,7 +3,6 @@ grammar PL0;
 @lexer::header { package PL0Modules; }
 
 //TODO: Add booleans in the future
-
 program : MODULE MAIN SEMICOLON block MAIN DOT;
 
 //globalDeclList -> globals
@@ -34,7 +33,9 @@ varDeclItemInner: COMMA variableDeclDefinition varDeclItemInner | ;
 
 //actual assignment de
 constVariableDeclDefinition: ID COLON dataTypes ASSIGNMENT constExpr;
-variableDeclDefinition : constVariableDeclDefinition | ID COLON type;
+variableVariableDeclDefinition: ID COLON type;
+
+variableDeclDefinition : constVariableDeclDefinition | variableVariableDeclDefinition;
 
 //value rhs of assignment
 constExpr : ID |
@@ -78,10 +79,6 @@ callStmt : ID BRACKET_OPEN parameters BRACKET_CLOSE;
 //parameters
 parameters: expr parametersInnerRepeat | ;
 parametersInnerRepeat: COMMA expr parametersInnerRepeat | ;
-
-//parameters : paremeterExpression | ;
-//paremeterExpression : expr parameterExtension;
-//parameterExtension: COMMA expr parameters | ;
 
 //assignment statements
 assignStmt : lvalue ASSIGNMENT expr;
@@ -128,9 +125,9 @@ termMultDivFactor: MULTIPLICATION factor termMultDivFactor | DIVISION factor ter
 factor : MINUS factor
     | lvalue
     | dataTypesTerminals
-    | INPUT
     | callStmt
-    | BRACKET_OPEN expr BRACKET_CLOSE;
+    | BRACKET_OPEN expr BRACKET_CLOSE
+    | INPUT;
 
 //Spaces and non-graphical characters
 WS: ('\n' | '\t' | ' ') -> skip;

@@ -1,7 +1,7 @@
 module main;
 
     var stack:array [100] of int;
-    var position:int;
+    var position:int := 0;
 
     procedure push(value:int);
     begin

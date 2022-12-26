@@ -109,6 +109,13 @@ public class PL0BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements PL
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitVariableVariableDeclDefinition(PL0Parser.VariableVariableDeclDefinitionContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitVariableDeclDefinition(PL0Parser.VariableDeclDefinitionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
