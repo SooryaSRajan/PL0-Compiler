@@ -322,4 +322,40 @@ public interface PL0Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFactor(PL0Parser.FactorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PL0Parser#lp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLp(PL0Parser.LpContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PL0Parser#rp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRp(PL0Parser.RpContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PL0Parser#add}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAdd(PL0Parser.AddContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PL0Parser#sub}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSub(PL0Parser.SubContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PL0Parser#mul}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMul(PL0Parser.MulContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PL0Parser#div}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiv(PL0Parser.DivContext ctx);
 }

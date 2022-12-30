@@ -36,24 +36,39 @@ class LLVMGenerator {
     }
 
     // functions
-    static void function_start(String id) {
+    static void function_start(String id, String returnType) {
         main_text += buffer;
         main_reg = reg;
-        buffer = "define void @" + id + "() nounwind {\n";
+        buffer = "define " + returnType + " @" + id + "() nounwind {\n";
         reg = 1;
     }
 
     //function with parameters
-    static void function_start(String id, String[] params, String[] types) {
+    static void function_start(String id, Value[] params, String returnType) {
         main_text += buffer;
         main_reg = reg;
-        buffer = "define void @" + id + "(";
+        buffer = "define " + returnType + " @" + id + "(";
+
+        //check for array too
         for (int i = 0; i < params.length; i++) {
-            buffer += types[i] + " %" + params[i];
+
+            if (params[i].type == Value.VarType.INT) {
+                buffer += "i32 %" + params[i].content;
+            } else if (params[i].type == Value.VarType.FLOAT) {
+                buffer += "double %" + params[i].content;
+            } else if (params[i].type == Value.VarType.ARRAY) {
+                if (params[i].typeOfArray == Value.VarType.INT) {
+                    buffer += "i32* %" + params[i].content;
+                } else if (params[i].typeOfArray == Value.VarType.FLOAT) {
+                    buffer += "double* %" + params[i].content;
+                }
+            }
             if (i != params.length - 1) {
                 buffer += ", ";
             }
         }
+
+
         buffer += ") nounwind {\n";
         reg = 1;
 

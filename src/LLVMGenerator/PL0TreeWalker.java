@@ -13,8 +13,8 @@ public class PL0TreeWalker extends PL0BaseListener {
     boolean isInGlobalScope = false;
     boolean isConstVariable = false;
 
-    private HashMap<String, Value> variables = new HashMap<>();
-    private HashSet<String> globalNames = new HashSet<>();
+    private final HashMap<String, Value> variables = new HashMap<>();
+    private final HashSet<String> globalNames = new HashSet<>();
     private HashSet<String> localNames = new HashSet<>();
     private Queue<String> infixExpr = new LinkedList<>();
     private String function = "";
@@ -70,31 +70,56 @@ public class PL0TreeWalker extends PL0BaseListener {
         super.enterProcDecl(ctx);
         isInGlobalScope = false;
         function = ctx.ID().get(0).getText();
-//        PL0Parser.ProcFormalCallChoiceContext formalChoice = ctx.procFormalCallChoice();
 
-        LinkedList<String> paramIDList = new LinkedList<>();
-        LinkedList<Value.VarType> paramTypeList = new LinkedList<>();
+        String returnType = "void";
 
-//        if (formalChoice != null) {
-//            PL0Parser.FormalDeclContext formalDeclContext = formalChoice.formalDecl();
-//
-//            paramIDList.add(formalDeclContext.ID().getText());
-//            paramTypeList.add(formalDeclContext.type().getText().equals("integer") ? Value.VarType.INT : Value.VarType.FLOAT);
-//
-//
-//            PL0Parser.FormalDeclInnerRepeatContext innerDeclRepeatContext = formalChoice.formalDeclInnerRepeat();
-//            while (innerDeclRepeatContext != null && innerDeclRepeatContext.formalDecl() != null) {
-//                paramIDList.add(innerDeclRepeatContext.formalDecl().ID().getText());
-//                paramTypeList.add(innerDeclRepeatContext.formalDecl().type().getText().equals("integer") ? Value.VarType.INT : Value.VarType.FLOAT);
-//                innerDeclRepeatContext = innerDeclRepeatContext.formalDeclInnerRepeat();
-//            }
-//
-//            LLVMGenerator.function_start(function, paramIDList.toArray(String[]::new), paramTypeList.toArray(String[]::new));
+        if (ctx.returnType().dataTypes() != null) {
+            returnType = ctx.returnType().dataTypes().getText();
+            if (returnType.equals("int")) {
+                returnType = "i32";
+            } else if (returnType.equals("float")) {
+                returnType = "double";
+            }
+        }
+        PL0Parser.ProcFormalCallChoiceContext formalChoice = ctx.procFormalCallChoice();
 
-//        }
-//        else{
-            LLVMGenerator.function_start(function);
-//        }
+
+        LinkedList<Value> paramTypeList = new LinkedList<>();
+
+        if (formalChoice != null && formalChoice.formalDecl() != null) {
+            PL0Parser.FormalDeclContext formalDeclContext = formalChoice.formalDecl();
+
+            String varName = formalDeclContext.ID().getText();
+            boolean isArray = formalDeclContext.type().arrType() != null;
+            if (isArray) {
+                paramTypeList.add(new Value(varName, Value.VarType.valueOf(formalDeclContext.type().arrType().dataTypes().getText()), true));
+            } else {
+                paramTypeList.add(new Value(varName, Value.VarType.valueOf(formalDeclContext.type().getText().toUpperCase()), false));
+            }
+
+            PL0Parser.FormalDeclInnerRepeatContext innerDeclRepeatContext = formalChoice.formalDeclInnerRepeat();
+            while (innerDeclRepeatContext != null && innerDeclRepeatContext.formalDecl() != null) {
+                PL0Parser.FormalDeclContext declContext = innerDeclRepeatContext.formalDecl();
+                varName = declContext.ID().getText();
+                isArray = declContext.type().arrType() != null;
+                if (isArray) {
+                    paramTypeList.add(new Value(varName, Value.VarType.valueOf(declContext.type().arrType().dataTypes().getText().toUpperCase()), true));
+                } else {
+                    paramTypeList.add(new Value(varName, Value.VarType.valueOf(declContext.type().getText().toUpperCase()), false));
+                }
+                innerDeclRepeatContext = innerDeclRepeatContext.formalDeclInnerRepeat();
+            }
+
+            for (Value value : paramTypeList) {
+                localNames.add(value.content);
+                putVariable(value.content, value);
+            }
+
+            LLVMGenerator.function_start(function, paramTypeList.toArray(new Value[0]), returnType);
+
+        } else {
+            LLVMGenerator.function_start(function, returnType);
+        }
 
     }
 
@@ -116,6 +141,8 @@ public class PL0TreeWalker extends PL0BaseListener {
         String dataType = ctx.dataTypes().getText();
         String value = ctx.dataTypesTerminals().getText();
 
+        System.out.println("const variable " + ID + " " + dataType + " " + value);
+
         if (!variables.containsKey(ID)) {
 
             if (isInGlobalScope) {
@@ -125,10 +152,10 @@ public class PL0TreeWalker extends PL0BaseListener {
             }
 
             if (dataType.equals("int")) {
-                variables.put(ID, new Value(ID, Value.VarType.INT, false));
+                putVariable(ID, new Value(ID, Value.VarType.INT, false));
                 LLVMGenerator.declare_i32_constant(ID, Integer.parseInt(value), isInGlobalScope);
             } else if (dataType.equals("float")) {
-                variables.put(ID, new Value(ID, Value.VarType.FLOAT, false));
+                putVariable(ID, new Value(ID, Value.VarType.FLOAT, false));
                 LLVMGenerator.declare_double_constant(ID, Double.parseDouble(value), isInGlobalScope);
             } else {
                 System.out.println("Unknown data type: " + dataType);
@@ -147,6 +174,8 @@ public class PL0TreeWalker extends PL0BaseListener {
 
         String ID = ctx.ID().getText();
 
+        System.out.println("variable " + ID + " datatype" + ctx.type().getText());
+
         if (!variables.containsKey(ID)) {
             if (isInGlobalScope) {
                 globalNames.add(ID);
@@ -157,11 +186,11 @@ public class PL0TreeWalker extends PL0BaseListener {
                 String dataType = ctx.type().dataTypes().getText();
                 if (dataType.equals("int")) {
                     LLVMGenerator.declare_i32(ID, isInGlobalScope);
-                    variables.put(ID, new Value(ID, Value.VarType.INT, false));
+                    putVariable(ID, new Value(ID, Value.VarType.INT, false));
 
                 } else if (dataType.equals("float")) {
                     LLVMGenerator.declare_double(ID, isInGlobalScope);
-                    variables.put(ID, new Value(ID, Value.VarType.FLOAT, false));
+                    putVariable(ID, new Value(ID, Value.VarType.FLOAT, false));
                 } else {
                     System.out.println("Unknown data type: " + dataType);
                 }
@@ -169,9 +198,9 @@ public class PL0TreeWalker extends PL0BaseListener {
                 int arraySize = Integer.parseInt(ctx.type().arrType().INTEGER().getText());
                 String dataType = ctx.type().arrType().dataTypes().getText();
                 if (dataType.equals("int")) {
-                    variables.put(ID, new Value(ID, Value.VarType.INT, true));
+                    putVariable(ID, new Value(ID, Value.VarType.INT, true));
                 } else if (dataType.equals("float")) {
-                    variables.put(ID, new Value(ID, Value.VarType.FLOAT, true));
+                    putVariable(ID, new Value(ID, Value.VarType.FLOAT, true));
                 } else {
                     System.out.println("Unknown data type: " + dataType);
                 }
@@ -188,12 +217,9 @@ public class PL0TreeWalker extends PL0BaseListener {
         String dataType = ctx.dataTypes().getText();
         Value value = null;
 
+        System.out.println("assigned variable " + ID + " " + dataType + " " + ctx.dataTypes().getText());
+
         if (!variables.containsKey(ID)) {
-            if (isInGlobalScope) {
-                globalNames.add(ID);
-            } else if (!globalNames.contains(ID)) {
-                localNames.add(ID);
-            }
 
             String assignedID = "";
 
@@ -230,6 +256,8 @@ public class PL0TreeWalker extends PL0BaseListener {
             localNames.add(ID);
         }
 
+        putVariable(ID, value);
+
         if (value.type == Value.VarType.INT) {
             LLVMGenerator.assign_i32(ID, getValue(value), globalNames);
         } else if (value.type == Value.VarType.FLOAT) {
@@ -251,6 +279,107 @@ public class PL0TreeWalker extends PL0BaseListener {
     private void removeLocalVariables() {
         for (String id : localNames) {
             variables.remove(id);
+        }
+    }
+
+    @Override
+    public void exitExpr(PL0Parser.ExprContext ctx) {
+        super.enterExpr(ctx);
+        if (!infixExpr.isEmpty()) {
+
+            if (infixExpr.size() > 1) {
+                Value value = MathUtils.eval(infixExpr, globalNames, variables);
+                System.out.println(infixExpr + " " + ctx.start.getLine() + " " + value.content);
+                infixExpr = new LinkedList<>();
+            } else {
+                System.out.println(infixExpr + " " + ctx.start.getLine() + " only one variable");
+                //Load the variable for usage and use in expressions later
+            }
+
+        }
+
+    }
+
+    @Override
+    public void enterLp(PL0Parser.LpContext ctx) {
+        super.enterLp(ctx);
+        infixExpr.add(ctx.getText());
+    }
+
+    @Override
+    public void enterRp(PL0Parser.RpContext ctx) {
+        super.enterRp(ctx);
+        infixExpr.add(ctx.getText());
+    }
+
+    @Override
+    public void enterAdd(PL0Parser.AddContext ctx) {
+        super.enterAdd(ctx);
+        infixExpr.add(ctx.getText());
+    }
+
+    @Override
+    public void enterSub(PL0Parser.SubContext ctx) {
+        super.enterSub(ctx);
+        infixExpr.add(ctx.getText());
+    }
+
+    @Override
+    public void enterMul(PL0Parser.MulContext ctx) {
+        super.enterMul(ctx);
+        infixExpr.add(ctx.getText());
+    }
+
+    @Override
+    public void enterDiv(PL0Parser.DivContext ctx) {
+        super.enterDiv(ctx);
+        infixExpr.add(ctx.getText());
+    }
+
+    @Override
+    public void enterFactor(PL0Parser.FactorContext ctx) {
+        super.enterFactor(ctx);
+        if (ctx.ID() != null) {
+            String ID = ctx.ID().getText();
+            if (variables.containsKey(ID)) {
+                infixExpr.add(ID);
+            } else {
+                System.out.println("Variable " + ID + " not declared");
+                System.out.println(variables.toString() + " " + ctx.start.getLine());
+            }
+        } else if (ctx.dataTypesTerminals() != null) {
+            infixExpr.add(ctx.dataTypesTerminals().getText());
+        } else {
+            System.out.println(ctx.getText());
+        }
+    }
+
+    public void putVariable(String ID, Value value) {
+        if (variables.containsKey(ID)) {
+            System.out.println("Variable " + ID + " already declared");
+            System.exit(1);
+        } else {
+            variables.put(ID, value);
+        }
+    }
+
+    @Override
+    public void exitAssignStmt(PL0Parser.AssignStmtContext ctx) {
+        super.exitAssignStmt(ctx);
+        System.out.println("exit assign " + ctx.arrayIndex().getText());
+        System.out.println(ctx.assignmentTerminal().INPUT());
+        String ID = ctx.ID().getText();
+        System.out.println("assigning " + ID);
+        if (ctx.assignmentTerminal().INPUT() != null) {
+            Value value = variables.get(ID);
+            System.out.println(value + " value " + ID);
+            if (value != null) {
+                if (value.type == Value.VarType.INT) {
+                    LLVMGenerator.scanf_i32(ID, globalNames);
+                } else if (value.type == Value.VarType.FLOAT) {
+                    LLVMGenerator.scanf_double(ID, globalNames);
+                }
+            }
         }
     }
 }

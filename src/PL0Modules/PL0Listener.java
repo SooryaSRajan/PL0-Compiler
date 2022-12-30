@@ -527,4 +527,64 @@ public interface PL0Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFactor(PL0Parser.FactorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PL0Parser#lp}.
+	 * @param ctx the parse tree
+	 */
+	void enterLp(PL0Parser.LpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#lp}.
+	 * @param ctx the parse tree
+	 */
+	void exitLp(PL0Parser.LpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PL0Parser#rp}.
+	 * @param ctx the parse tree
+	 */
+	void enterRp(PL0Parser.RpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#rp}.
+	 * @param ctx the parse tree
+	 */
+	void exitRp(PL0Parser.RpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PL0Parser#add}.
+	 * @param ctx the parse tree
+	 */
+	void enterAdd(PL0Parser.AddContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#add}.
+	 * @param ctx the parse tree
+	 */
+	void exitAdd(PL0Parser.AddContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PL0Parser#sub}.
+	 * @param ctx the parse tree
+	 */
+	void enterSub(PL0Parser.SubContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#sub}.
+	 * @param ctx the parse tree
+	 */
+	void exitSub(PL0Parser.SubContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PL0Parser#mul}.
+	 * @param ctx the parse tree
+	 */
+	void enterMul(PL0Parser.MulContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#mul}.
+	 * @param ctx the parse tree
+	 */
+	void exitMul(PL0Parser.MulContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PL0Parser#div}.
+	 * @param ctx the parse tree
+	 */
+	void enterDiv(PL0Parser.DivContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#div}.
+	 * @param ctx the parse tree
+	 */
+	void exitDiv(PL0Parser.DivContext ctx);
 }

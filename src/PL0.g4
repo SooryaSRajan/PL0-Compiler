@@ -46,7 +46,7 @@ assignedVariableTerminal : ID |
 procDecl : PROCEDURE ID BRACKET_OPEN procFormalCallChoice BRACKET_CLOSE returnType SEMICOLON statementBlock ID;
 
 //returnTYpe
-returnType: COLON type | ;
+returnType: COLON dataTypes | ;
 
 //list of parameters
 procFormalCallChoice : formalDecl formalDeclInnerRepeat | ;
@@ -123,12 +123,30 @@ conditionalOperations : LT
 
 //expressionsn with factors
 expr : term expressionInner;
-expressionInner: PLUS term expressionInner | MINUS term expressionInner | ;
+expressionInner: add term expressionInner | sub term expressionInner | ;
 term : factor termMultDivFactor;
-termMultDivFactor: MULTIPLICATION factor termMultDivFactor | DIVISION factor termMultDivFactor | ;
+termMultDivFactor: mul factor termMultDivFactor | div factor termMultDivFactor | ;
 factor : dataTypesTerminals
-    | BRACKET_OPEN expr BRACKET_CLOSE
+    | lp expr rp
     | ID;
+
+lp: BRACKET_OPEN
+    ;
+
+rp: BRACKET_CLOSE
+    ;
+
+add: PLUS
+    ;
+
+sub: MINUS
+    ;
+
+mul: MULTIPLICATION
+    ;
+
+div: DIVISION
+    ;
 
 //Spaces and non-graphical characters
 WS: ('\n' | '\t' | ' ') -> skip;
