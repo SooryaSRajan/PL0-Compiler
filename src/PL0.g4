@@ -32,13 +32,14 @@ varDecl : VAR variableDeclDefinition varDeclItemInner;
 varDeclItemInner: COMMA variableDeclDefinition varDeclItemInner | ;
 
 //actual assignment de
-constVariableDeclDefinition: ID COLON dataTypes ASSIGNMENT constExpr;
+constVariableDeclDefinition: ID COLON dataTypes ASSIGNMENT dataTypesTerminals;
 variableVariableDeclDefinition: ID COLON type;
+assignedVariableDeclDefinition: ID COLON dataTypes ASSIGNMENT assignedVariableTerminal;
 
-variableDeclDefinition : constVariableDeclDefinition | variableVariableDeclDefinition;
+variableDeclDefinition : assignedVariableDeclDefinition | variableVariableDeclDefinition;
 
 //value rhs of assignment
-constExpr : ID |
+assignedVariableTerminal : ID |
     dataTypesTerminals;
 
 //procedure declaration
@@ -54,7 +55,7 @@ formalDecl : ID COLON type;
 
 type : dataTypes
     | arrType;
-arrType: ARRAY SQ_OPEN INTEGER SQ_CLOSE OF type;
+arrType: ARRAY SQ_OPEN INTEGER SQ_CLOSE OF dataTypes;
 
 //main body
 mainStmtList: decl SEMICOLON stmtListStmtInner | stmt SEMICOLON stmtListStmtInner | ;
@@ -80,17 +81,20 @@ callStmt : ID BRACKET_OPEN parameters BRACKET_CLOSE;
 parameters: expr parametersInnerRepeat | ;
 parametersInnerRepeat: COMMA expr parametersInnerRepeat | ;
 
-//assignment statements
-assignStmt : lvalue ASSIGNMENT expr;
-lvalue : ID arrayIntSelection;
-arrayIntSelection : SQ_OPEN expr SQ_CLOSE | ;
+//assignment over call or input or expression on variable
+assignStmt : ID arrayIndex ASSIGNMENT assignmentTerminal;
+arrayIndex: SQ_OPEN expr SQ_CLOSE | ;
+
+//terminal of assignment
+assignmentTerminal: INPUT | callStmt | expr | ID arrayIndex;
 
 //return
 returnStmt : RETURN returnStatementChoice;
 returnStatementChoice: expr | ;
 
+//output, can be an expression or a string
 outStmt : OUTPUT ASSIGNMENT outStmtInner;
-outStmtInner: expr | STRING;
+outStmtInner: assignmentTerminal | STRING;
 
 //if statement
 ifStmt : IF condition THEN blockStmtList ifStmtInner END;
@@ -122,12 +126,9 @@ expr : term expressionInner;
 expressionInner: PLUS term expressionInner | MINUS term expressionInner | ;
 term : factor termMultDivFactor;
 termMultDivFactor: MULTIPLICATION factor termMultDivFactor | DIVISION factor termMultDivFactor | ;
-factor : MINUS factor
-    | lvalue
-    | dataTypesTerminals
-    | callStmt
+factor : dataTypesTerminals
     | BRACKET_OPEN expr BRACKET_CLOSE
-    | INPUT;
+    | ID;
 
 //Spaces and non-graphical characters
 WS: ('\n' | '\t' | ' ') -> skip;

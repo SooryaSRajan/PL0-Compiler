@@ -1,7 +1,7 @@
 module main;
 
     var stack:array [100] of int;
-    var position:int := 0;
+    var position:int := 123;
 
     procedure push(value:int);
     begin
@@ -16,9 +16,13 @@ module main;
 
     procedure pop():int;
     begin
+
+        var arrv:int;
+
         if position >= 0 then
             position := position - 1;
-            return stack[position + 1];
+            arrv := stack[position];
+            return arrv;
             [else
                 output := "Stack Underflow";
             ]
@@ -27,8 +31,10 @@ module main;
 
     procedure top():int;
     begin
+        var arrv:int;
         if position >= 0 then
-            return stack[position];
+            arrv := stack[position];
+            return arrv;
             [else
                 output := "Stack Underflow";
             ]
@@ -39,7 +45,7 @@ begin
 
     #0 - push, 1 - pop, 2 - top, 3 - exit
 
-    position := -1;
+    position :=1;
     var n:int;
     n := input;
     var value:int;

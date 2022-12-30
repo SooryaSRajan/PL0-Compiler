@@ -95,17 +95,23 @@ public interface PL0Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVariableVariableDeclDefinition(PL0Parser.VariableVariableDeclDefinitionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PL0Parser#assignedVariableDeclDefinition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignedVariableDeclDefinition(PL0Parser.AssignedVariableDeclDefinitionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PL0Parser#variableDeclDefinition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitVariableDeclDefinition(PL0Parser.VariableDeclDefinitionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PL0Parser#constExpr}.
+	 * Visit a parse tree produced by {@link PL0Parser#assignedVariableTerminal}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitConstExpr(PL0Parser.ConstExprContext ctx);
+	T visitAssignedVariableTerminal(PL0Parser.AssignedVariableTerminalContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PL0Parser#procDecl}.
 	 * @param ctx the parse tree
@@ -203,17 +209,17 @@ public interface PL0Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssignStmt(PL0Parser.AssignStmtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PL0Parser#lvalue}.
+	 * Visit a parse tree produced by {@link PL0Parser#arrayIndex}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLvalue(PL0Parser.LvalueContext ctx);
+	T visitArrayIndex(PL0Parser.ArrayIndexContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PL0Parser#arrayIntSelection}.
+	 * Visit a parse tree produced by {@link PL0Parser#assignmentTerminal}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitArrayIntSelection(PL0Parser.ArrayIntSelectionContext ctx);
+	T visitAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PL0Parser#returnStmt}.
 	 * @param ctx the parse tree

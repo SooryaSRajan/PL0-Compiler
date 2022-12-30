@@ -185,6 +185,18 @@ public class PL0BaseListener implements PL0Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAssignedVariableDeclDefinition(PL0Parser.AssignedVariableDeclDefinitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignedVariableDeclDefinition(PL0Parser.AssignedVariableDeclDefinitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVariableDeclDefinition(PL0Parser.VariableDeclDefinitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -197,13 +209,13 @@ public class PL0BaseListener implements PL0Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConstExpr(PL0Parser.ConstExprContext ctx) { }
+	@Override public void enterAssignedVariableTerminal(PL0Parser.AssignedVariableTerminalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConstExpr(PL0Parser.ConstExprContext ctx) { }
+	@Override public void exitAssignedVariableTerminal(PL0Parser.AssignedVariableTerminalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -401,25 +413,25 @@ public class PL0BaseListener implements PL0Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLvalue(PL0Parser.LvalueContext ctx) { }
+	@Override public void enterArrayIndex(PL0Parser.ArrayIndexContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLvalue(PL0Parser.LvalueContext ctx) { }
+	@Override public void exitArrayIndex(PL0Parser.ArrayIndexContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArrayIntSelection(PL0Parser.ArrayIntSelectionContext ctx) { }
+	@Override public void enterAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArrayIntSelection(PL0Parser.ArrayIntSelectionContext ctx) { }
+	@Override public void exitAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

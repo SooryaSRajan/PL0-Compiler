@@ -148,6 +148,16 @@ public interface PL0Listener extends ParseTreeListener {
 	 */
 	void exitVariableVariableDeclDefinition(PL0Parser.VariableVariableDeclDefinitionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PL0Parser#assignedVariableDeclDefinition}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignedVariableDeclDefinition(PL0Parser.AssignedVariableDeclDefinitionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#assignedVariableDeclDefinition}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignedVariableDeclDefinition(PL0Parser.AssignedVariableDeclDefinitionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PL0Parser#variableDeclDefinition}.
 	 * @param ctx the parse tree
 	 */
@@ -158,15 +168,15 @@ public interface PL0Listener extends ParseTreeListener {
 	 */
 	void exitVariableDeclDefinition(PL0Parser.VariableDeclDefinitionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PL0Parser#constExpr}.
+	 * Enter a parse tree produced by {@link PL0Parser#assignedVariableTerminal}.
 	 * @param ctx the parse tree
 	 */
-	void enterConstExpr(PL0Parser.ConstExprContext ctx);
+	void enterAssignedVariableTerminal(PL0Parser.AssignedVariableTerminalContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PL0Parser#constExpr}.
+	 * Exit a parse tree produced by {@link PL0Parser#assignedVariableTerminal}.
 	 * @param ctx the parse tree
 	 */
-	void exitConstExpr(PL0Parser.ConstExprContext ctx);
+	void exitAssignedVariableTerminal(PL0Parser.AssignedVariableTerminalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PL0Parser#procDecl}.
 	 * @param ctx the parse tree
@@ -328,25 +338,25 @@ public interface PL0Listener extends ParseTreeListener {
 	 */
 	void exitAssignStmt(PL0Parser.AssignStmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PL0Parser#lvalue}.
+	 * Enter a parse tree produced by {@link PL0Parser#arrayIndex}.
 	 * @param ctx the parse tree
 	 */
-	void enterLvalue(PL0Parser.LvalueContext ctx);
+	void enterArrayIndex(PL0Parser.ArrayIndexContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PL0Parser#lvalue}.
+	 * Exit a parse tree produced by {@link PL0Parser#arrayIndex}.
 	 * @param ctx the parse tree
 	 */
-	void exitLvalue(PL0Parser.LvalueContext ctx);
+	void exitArrayIndex(PL0Parser.ArrayIndexContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PL0Parser#arrayIntSelection}.
+	 * Enter a parse tree produced by {@link PL0Parser#assignmentTerminal}.
 	 * @param ctx the parse tree
 	 */
-	void enterArrayIntSelection(PL0Parser.ArrayIntSelectionContext ctx);
+	void enterAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PL0Parser#arrayIntSelection}.
+	 * Exit a parse tree produced by {@link PL0Parser#assignmentTerminal}.
 	 * @param ctx the parse tree
 	 */
-	void exitArrayIntSelection(PL0Parser.ArrayIntSelectionContext ctx);
+	void exitAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PL0Parser#returnStmt}.
 	 * @param ctx the parse tree
