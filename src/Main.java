@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        CharStream codePointCharStream = CharStreams.fromFileName("src/InputFiles/stack");
+        CharStream codePointCharStream = CharStreams.fromFileName("src/InputFiles/stack.pl0");
 
         //generates a lexer output for the input code
         PL0Lexer lexer = new PL0Lexer(codePointCharStream);
