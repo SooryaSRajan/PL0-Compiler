@@ -10,9 +10,12 @@ begin
     var product:int;
     product := 1;
 
+    var inp:int;
+
     for 0 to n
         do
-            product := product * input;
+            inp := input;
+            product := product * inp;
         end;
 
     output := "Input of all numbers are: ";

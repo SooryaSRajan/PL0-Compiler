@@ -369,8 +369,7 @@ public class CGenerator extends PL0BaseListener {
     public void enterInputStmt(PL0Parser.InputStmtContext ctx) {
         super.enterInputStmt(ctx);
 
-        String input = ctx.assignL().getText();
-        System.out.println(input);
+        String input = ctx.assignL().ID().getText();
 
         if (getVariableType(input).equals("int")) {
             mainDeclaration += "scanf(\"%d\", &" + input + ");\n";
@@ -405,7 +404,18 @@ public class CGenerator extends PL0BaseListener {
             } else if (outStmtInnerContext.assignmentTerminal().ID() != null) {
                 variableName = outStmtInnerContext.assignmentTerminal().ID().getText();
             } else if (outStmtInnerContext.assignmentTerminal().expr() != null) {
-                mainDeclaration += "\nprintf(\"%f\", " + outStmtInnerContext.assignmentTerminal().expr().getText() + ");\n";
+                String expr = outStmtInnerContext.assignmentTerminal().expr().getText();
+                String type = getVariableType(expr);
+                if (type != null) {
+                    if (type.equals("int")) {
+                        mainDeclaration += "\nprintf(\"%d\", " + expr + ");\n";
+                    } else if (type.equals("float")) {
+                        mainDeclaration += "\nprintf(\"%f\", " + expr + ");\n";
+                    }
+                } else {
+                    mainDeclaration += "\nprintf(\"%f\", " + expr + ");\n";
+                }
+
                 return;
             }
 
