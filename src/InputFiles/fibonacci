@@ -11,6 +11,8 @@ module main;
     
     #The below code shows implementation of fibonacci series
 
+    var result:float := 0;
+
     procedure fib(arg:int);
     begin
 	var temp:int;

@@ -28,6 +28,16 @@ public interface PL0Listener extends ParseTreeListener {
 	 */
 	void exitBlock(PL0Parser.BlockContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PL0Parser#main}.
+	 * @param ctx the parse tree
+	 */
+	void enterMain(PL0Parser.MainContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#main}.
+	 * @param ctx the parse tree
+	 */
+	void exitMain(PL0Parser.MainContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PL0Parser#statementBlock}.
 	 * @param ctx the parse tree
 	 */
@@ -298,6 +308,16 @@ public interface PL0Listener extends ParseTreeListener {
 	 */
 	void exitStmt(PL0Parser.StmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PL0Parser#callWithoutAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterCallWithoutAssignment(PL0Parser.CallWithoutAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#callWithoutAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitCallWithoutAssignment(PL0Parser.CallWithoutAssignmentContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PL0Parser#callStmt}.
 	 * @param ctx the parse tree
 	 */
@@ -338,6 +358,36 @@ public interface PL0Listener extends ParseTreeListener {
 	 */
 	void exitAssignStmt(PL0Parser.AssignStmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PL0Parser#assignmentTerminal}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#assignmentTerminal}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PL0Parser#inputStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterInputStmt(PL0Parser.InputStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#inputStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitInputStmt(PL0Parser.InputStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PL0Parser#assignL}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignL(PL0Parser.AssignLContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PL0Parser#assignL}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignL(PL0Parser.AssignLContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PL0Parser#arrayIndex}.
 	 * @param ctx the parse tree
 	 */
@@ -348,15 +398,15 @@ public interface PL0Listener extends ParseTreeListener {
 	 */
 	void exitArrayIndex(PL0Parser.ArrayIndexContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PL0Parser#assignmentTerminal}.
+	 * Enter a parse tree produced by {@link PL0Parser#assignmentSymbol}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx);
+	void enterAssignmentSymbol(PL0Parser.AssignmentSymbolContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PL0Parser#assignmentTerminal}.
+	 * Exit a parse tree produced by {@link PL0Parser#assignmentSymbol}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx);
+	void exitAssignmentSymbol(PL0Parser.AssignmentSymbolContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PL0Parser#returnStmt}.
 	 * @param ctx the parse tree

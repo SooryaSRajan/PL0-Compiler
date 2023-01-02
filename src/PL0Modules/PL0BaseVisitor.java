@@ -32,6 +32,13 @@ public class PL0BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements PL
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitMain(PL0Parser.MainContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitStatementBlock(PL0Parser.StatementBlockContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -221,6 +228,13 @@ public class PL0BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements PL
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitCallWithoutAssignment(PL0Parser.CallWithoutAssignmentContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitCallStmt(PL0Parser.CallStmtContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -249,6 +263,27 @@ public class PL0BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements PL
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitInputStmt(PL0Parser.InputStmtContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitAssignL(PL0Parser.AssignLContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitArrayIndex(PL0Parser.ArrayIndexContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -256,7 +291,7 @@ public class PL0BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements PL
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAssignmentSymbol(PL0Parser.AssignmentSymbolContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

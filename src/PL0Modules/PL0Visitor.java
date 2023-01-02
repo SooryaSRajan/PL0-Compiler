@@ -23,6 +23,12 @@ public interface PL0Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBlock(PL0Parser.BlockContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PL0Parser#main}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMain(PL0Parser.MainContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PL0Parser#statementBlock}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -185,6 +191,12 @@ public interface PL0Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStmt(PL0Parser.StmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PL0Parser#callWithoutAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCallWithoutAssignment(PL0Parser.CallWithoutAssignmentContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PL0Parser#callStmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -209,17 +221,35 @@ public interface PL0Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssignStmt(PL0Parser.AssignStmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PL0Parser#assignmentTerminal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PL0Parser#inputStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInputStmt(PL0Parser.InputStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PL0Parser#assignL}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignL(PL0Parser.AssignLContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PL0Parser#arrayIndex}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitArrayIndex(PL0Parser.ArrayIndexContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PL0Parser#assignmentTerminal}.
+	 * Visit a parse tree produced by {@link PL0Parser#assignmentSymbol}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx);
+	T visitAssignmentSymbol(PL0Parser.AssignmentSymbolContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PL0Parser#returnStmt}.
 	 * @param ctx the parse tree

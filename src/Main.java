@@ -1,6 +1,5 @@
-import LLVMGenerator.PL0TreeWalker;
+import CGenerator.CGenerator;
 import PL0Modules.PL0Lexer;
-import PL0Modules.PL0Listener;
 import PL0Modules.PL0Parser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -12,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        CharStream codePointCharStream = CharStreams.fromFileName("src/InputFiles/sum");
+        CharStream codePointCharStream = CharStreams.fromFileName("src/InputFiles/stack");
 
         //generates a lexer output for the input code
         PL0Lexer lexer = new PL0Lexer(codePointCharStream);
@@ -25,7 +24,7 @@ public class Main {
 //        parser.program();
 
         ParseTreeWalker walker = new ParseTreeWalker();
-      walker.walk(new PL0TreeWalker(), parser.program());
+      walker.walk(new CGenerator(), parser.program());
 
         //TODO: Use tree walker to walk through code, generate IR directly by maintaining HashMaps of global and local variables, evaluate expressions as much as I can maybe? Use Stack to decompose into 3-address code
 

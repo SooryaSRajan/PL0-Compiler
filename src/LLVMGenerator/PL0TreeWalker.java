@@ -363,25 +363,25 @@ public class PL0TreeWalker extends PL0BaseListener {
         }
     }
 
-    @Override
-    public void exitAssignStmt(PL0Parser.AssignStmtContext ctx) {
-        super.exitAssignStmt(ctx);
-        System.out.println("exit assign " + ctx.arrayIndex().getText());
-        System.out.println(ctx.assignmentTerminal().INPUT());
-        String ID = ctx.ID().getText();
-        System.out.println("assigning " + ID);
-        if (ctx.assignmentTerminal().INPUT() != null) {
-            Value value = variables.get(ID);
-            System.out.println(value + " value " + ID);
-            if (value != null) {
-                if (value.type == Value.VarType.INT) {
-                    LLVMGenerator.scanf_i32(ID, globalNames);
-                } else if (value.type == Value.VarType.FLOAT) {
-                    LLVMGenerator.scanf_double(ID, globalNames);
-                }
-            }
-        }
-    }
+//    @Override
+//    public void exitAssignStmt(PL0Parser.AssignStmtContext ctx) {
+//        super.exitAssignStmt(ctx);
+//        System.out.println("exit assign " + ctx.arrayIndex().getText());
+//        System.out.println(ctx.assignmentTerminal().INPUT());
+//        String ID = ctx.ID().getText();
+//        System.out.println("assigning " + ID);
+//        if (ctx.assignmentTerminal().INPUT() != null) {
+//            Value value = variables.get(ID);
+//            System.out.println(value + " value " + ID);
+//            if (value != null) {
+//                if (value.type == Value.VarType.INT) {
+//                    LLVMGenerator.scanf_i32(ID, globalNames);
+//                } else if (value.type == Value.VarType.FLOAT) {
+//                    LLVMGenerator.scanf_double(ID, globalNames);
+//                }
+//            }
+//        }
+//    }
 }
 
 

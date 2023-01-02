@@ -7,7 +7,9 @@ program : MODULE MAIN SEMICOLON block MAIN DOT;
 
 //globalDeclList -> globals
 //stmtList -> body
-block : globalDeclList statementBlock;
+block : globalDeclList main;
+
+main: statementBlock;
 statementBlock: BEGIN mainStmtList END;
 
 //globalDecl -> declarations allowed in global scope
@@ -66,15 +68,17 @@ blockStmtList: stmt SEMICOLON blockStmtListInner | ;
 blockStmtListInner: blockStmtList | ;
 
 //actual statements
-stmt : callStmt
+stmt : callWithoutAssignment
     | assignStmt
     | returnStmt
+    | inputStmt
     | outStmt
     | ifStmt
     | whileStmt
     | forStmt;
 
 //function call
+callWithoutAssignment: callStmt;
 callStmt : ID BRACKET_OPEN parameters BRACKET_CLOSE;
 
 //parameters
@@ -82,11 +86,18 @@ parameters: expr parametersInnerRepeat | ;
 parametersInnerRepeat: COMMA expr parametersInnerRepeat | ;
 
 //assignment over call or input or expression on variable
-assignStmt : ID arrayIndex ASSIGNMENT assignmentTerminal;
-arrayIndex: SQ_OPEN expr SQ_CLOSE | ;
+assignStmt : assignL assignmentSymbol assignmentTerminal;
 
-//terminal of assignment
-assignmentTerminal: INPUT | callStmt | expr | ID arrayIndex;
+//terminal of assignINPUT | ment
+assignmentTerminal: callStmt | expr | ID arrayIndex;
+
+//inputStmt
+inputStmt: assignL ASSIGNMENT INPUT;
+
+assignL: ID arrayIndex;
+arrayIndex: SQ_OPEN expr SQ_CLOSE | ;
+assignmentSymbol : ASSIGNMENT;
+
 
 //return
 returnStmt : RETURN returnStatementChoice;
@@ -188,8 +199,8 @@ OF: 'of';
 
 //Variables and values
 ID: ([a-zA-Z_][a-zA-Z0-9_]*);
-INTEGER: [0]|[1-9]+[0-9]*;
-DECIMAL: [0]|[1-9]+[0-9]*'.'[0-9]+;
+INTEGER: [0]|[1-9]+[0-9]*|'-'[1-9]+[0-9]*;
+DECIMAL: [0]|[1-9]+[0-9]*'.'[0-9]+|'-'[1-9]+[0-9]*'.'[0-9]+;
 
 //operators
 PLUS: '+';

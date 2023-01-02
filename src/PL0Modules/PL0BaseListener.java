@@ -41,6 +41,18 @@ public class PL0BaseListener implements PL0Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMain(PL0Parser.MainContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMain(PL0Parser.MainContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStatementBlock(PL0Parser.StatementBlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -365,6 +377,18 @@ public class PL0BaseListener implements PL0Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCallWithoutAssignment(PL0Parser.CallWithoutAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCallWithoutAssignment(PL0Parser.CallWithoutAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCallStmt(PL0Parser.CallStmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -413,6 +437,42 @@ public class PL0BaseListener implements PL0Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInputStmt(PL0Parser.InputStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInputStmt(PL0Parser.InputStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAssignL(PL0Parser.AssignLContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignL(PL0Parser.AssignLContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterArrayIndex(PL0Parser.ArrayIndexContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -425,13 +485,13 @@ public class PL0BaseListener implements PL0Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx) { }
+	@Override public void enterAssignmentSymbol(PL0Parser.AssignmentSymbolContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssignmentTerminal(PL0Parser.AssignmentTerminalContext ctx) { }
+	@Override public void exitAssignmentSymbol(PL0Parser.AssignmentSymbolContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
